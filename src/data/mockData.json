@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "demo",
+      "alias": "Coleccionista_01",
+      "role": "admin"
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "Reliquia Desconocida",
+      "category": "Vintage",
+      "ownerId": "demo"
+    },
+    {
+      "id": 2,
+      "name": "Figura Steampunk",
+      "category": "Custom",
+      "ownerId": "demo"
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Austral Collector - Inicio</title>
+    <title>Austral Collector - Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --bg-base: #1a100b; --bg-gradient: radial-gradient(circle at top, #2b1b13 0%, #0f0906 100%); --bronce-gold: #d59c3e; --crimson-rust: #852b10; --text-light: #e0e0e0; }
@@ -35,26 +35,59 @@
         <div class="nav-links">
             <a href="index.html">Inicio</a>
             <a href="#contacto">Contacto</a>
-            <a href="login.html" id="btn-login" class="nav-btn-primary">Login</a>
-            
-            <div id="user-menu" style="display: none; position: relative;">
-                <button id="user-btn" style="background: rgba(0,0,0,0.6); color: var(--bronce-gold); border: 1px solid var(--bronce-gold); padding: 10px 20px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: bold; font-size: 14px; letter-spacing: 1px; border-radius: 3px; display: flex; align-items: center; gap: 10px; transition: all 0.3s;">
-                    <span id="user-name-display">Usuario</span>
-                    <span style="font-size: 10px;">▼</span>
-                </button>
-                <div id="user-dropdown" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 10px; background: rgba(26, 16, 11, 0.95); border: 1px solid var(--bronce-gold); min-width: 220px; box-shadow: 0 10px 25px rgba(0,0,0,0.8); z-index: 200; flex-direction: column; text-align: left;">
-                    <a href="perfil.html" style="padding: 15px 20px; border-bottom: 1px solid rgba(213, 156, 62, 0.2); display: block;">Perfil Personal</a>
-                    <a href="admin.html" style="padding: 15px 20px; border-bottom: 1px solid rgba(213, 156, 62, 0.2); display: block;">Panel de Administración</a>
-                    <a href="#" id="btn-logout" style="padding: 15px 20px; color: #ff6b6b; display: block;">Cerrar Sesión</a>
-                </div>
-            </div>
+            <a href="login.html" id="btn-login" class="nav-btn-primary" style="display:none;">Login</a>
         </div>
     </nav>
     
-    <div class="container">
-        <h1>INICIO</h1>
-        <p>Bienvenido al refugio de las reliquias vintage. Modifica el archivo para crear el landing público.</p>
+    <div class="container" style="max-width: 500px; padding-top: 80px;">
+        <div style="background-color: rgba(43, 27, 19, 0.85); padding: 40px; border: 1px solid var(--bronce-gold); border-radius: 4px; box-shadow: 0 4px 30px rgba(0,0,0,0.8);">
+            <h1 style="margin-top: 0; font-size: 28px;">GRIMORIO DE ACCESO</h1>
+            <p style="margin-bottom: 30px; color: #a0a0a0;">Identifícate para entrar a la bóveda.</p>
+            
+            <div id="error-msg" style="color: #ffaa99; background: rgba(133, 43, 16, 0.4); padding: 10px; border-left: 3px solid var(--crimson-rust); margin-bottom: 20px; display: none; font-size: 14px; text-align: left;"></div>
+
+            <form id="login-form">
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--bronce-gold); font-size: 14px; letter-spacing: 1px;">Usuario</label>
+                    <input type="text" id="username" placeholder="Ej: prueba1" style="width: 100%; box-sizing: border-box; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid #5c1b0a; color: var(--text-light); font-family: 'Inter', sans-serif; outline: none;" required>
+                </div>
+                <div style="margin-bottom: 30px; text-align: left;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--bronce-gold); font-size: 14px; letter-spacing: 1px;">Palabra de Paso</label>
+                    <input type="password" id="password" placeholder="••••••" style="width: 100%; box-sizing: border-box; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid #5c1b0a; color: var(--text-light); font-family: 'Inter', sans-serif; outline: none;" required>
+                </div>
+                <button type="submit" class="nav-btn-primary" style="width: 100%; font-size: 16px; letter-spacing: 2px; cursor:pointer;">DESBLOQUEAR</button>
+            </form>
+        </div>
     </div>
+
+    <!-- Script de Login para validar contra users.json -->
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const userVal = document.getElementById('username').value;
+            const passVal = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error-msg');
+
+            fetch('users.json')
+                .then(response => response.json())
+                .then(users => {
+                    const validUser = users.find(u => u.username === userVal && u.password === passVal);
+                    if (validUser) {
+                        errorDiv.style.display = 'none';
+                        sessionStorage.setItem('loggedUser', JSON.stringify(validUser));
+                        window.location.href = 'admin.html';
+                    } else {
+                        errorDiv.style.display = 'block';
+                        errorDiv.innerText = 'Usuario o palabra de paso incorrectos. Las reliquias permanecen selladas.';
+                    }
+                })
+                .catch(err => {
+                    console.error("Error al cargar users.json:", err);
+                    errorDiv.style.display = 'block';
+                    errorDiv.innerText = 'Error interno verificando credenciales.';
+                });
+        });
+    </script>
 
     <!-- Footer de Contacto -->
     <footer id="contacto" class="footer-area">
@@ -65,36 +98,5 @@
             <a href="#terminos">Términos y Condiciones</a>
         </div>
     </footer>
-
-    <!-- Script General de Navegación UI -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const loggedUserStr = sessionStorage.getItem('loggedUser');
-            if (loggedUserStr) {
-                const user = JSON.parse(loggedUserStr);
-                document.getElementById('btn-login').style.display = 'none';
-                document.getElementById('user-menu').style.display = 'block';
-                document.getElementById('user-name-display').textContent = user.name || user.username;
-
-                document.getElementById('user-btn').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const drop = document.getElementById('user-dropdown');
-                    drop.style.display = drop.style.display === 'flex' ? 'none' : 'flex';
-                });
-
-                document.getElementById('btn-logout').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    sessionStorage.removeItem('loggedUser');
-                    window.location.href = 'index.html';
-                });
-                
-                document.addEventListener('click', (e) => {
-                    if (!document.getElementById('user-menu').contains(e.target)) {
-                        document.getElementById('user-dropdown').style.display = 'none';
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>

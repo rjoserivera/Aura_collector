@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Austral Collector - Inicio</title>
+    <title>Austral Collector - Perfil</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --bg-base: #1a100b; --bg-gradient: radial-gradient(circle at top, #2b1b13 0%, #0f0906 100%); --bronce-gold: #d59c3e; --crimson-rust: #852b10; --text-light: #e0e0e0; }
@@ -52,8 +52,8 @@
     </nav>
     
     <div class="container">
-        <h1>INICIO</h1>
-        <p>Bienvenido al refugio de las reliquias vintage. Modifica el archivo para crear el landing público.</p>
+        <h1>PERFIL</h1>
+        <p>Esta es la vista de tu Perfil Privado (Solo accesible si estás logueado).</p>
     </div>
 
     <!-- Footer de Contacto -->
@@ -70,30 +70,30 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const loggedUserStr = sessionStorage.getItem('loggedUser');
-            if (loggedUserStr) {
-                const user = JSON.parse(loggedUserStr);
-                document.getElementById('btn-login').style.display = 'none';
-                document.getElementById('user-menu').style.display = 'block';
-                document.getElementById('user-name-display').textContent = user.name || user.username;
+            if (!loggedUserStr) { window.location.href = 'login.html'; return; } // Proteger ruta
 
-                document.getElementById('user-btn').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const drop = document.getElementById('user-dropdown');
-                    drop.style.display = drop.style.display === 'flex' ? 'none' : 'flex';
-                });
+            const user = JSON.parse(loggedUserStr);
+            document.getElementById('btn-login').style.display = 'none';
+            document.getElementById('user-menu').style.display = 'block';
+            document.getElementById('user-name-display').textContent = user.name || user.username;
 
-                document.getElementById('btn-logout').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    sessionStorage.removeItem('loggedUser');
-                    window.location.href = 'index.html';
-                });
-                
-                document.addEventListener('click', (e) => {
-                    if (!document.getElementById('user-menu').contains(e.target)) {
-                        document.getElementById('user-dropdown').style.display = 'none';
-                    }
-                });
-            }
+            document.getElementById('user-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                const drop = document.getElementById('user-dropdown');
+                drop.style.display = drop.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            document.getElementById('btn-logout').addEventListener('click', (e) => {
+                e.preventDefault();
+                sessionStorage.removeItem('loggedUser');
+                window.location.href = 'index.html';
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!document.getElementById('user-menu').contains(e.target)) {
+                    document.getElementById('user-dropdown').style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
