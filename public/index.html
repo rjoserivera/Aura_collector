@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Austral Collector - Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Cropper.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+    <style>
+        :root { --bg-base: #1a100b; --bg-gradient: radial-gradient(circle at top, #2b1b13 0%, #0f0906 100%); --bronce-gold: #d59c3e; --crimson-rust: #852b10; --text-light: #e0e0e0; }
+        body { background: var(--bg-gradient); background-color: var(--bg-base); background-attachment: fixed; color: var(--text-light); font-family: 'Inter', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; }
+        h1, h2, h3, .brand-font { font-family: 'Cinzel', serif; color: var(--bronce-gold); text-shadow: 0 2px 4px rgba(0,0,0,1); }
+        .navbar { background-color: rgba(43, 27, 19, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 2px solid var(--bronce-gold); padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 30px rgba(0,0,0,0.8); position: sticky; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; }
+        .container { padding: 50px 40px; max-width: 1200px; margin: 0 auto; flex-grow: 1; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand" style="display: flex; align-items: center; gap: 20px; text-decoration: none;">
+            <img src="/src/assets/img/logo.png" alt="Logo Austral" style="height: 55px; filter: drop-shadow(0 0 8px rgba(213, 156, 62, 0.3));"/>
+            <span class="brand-font" style="font-size: 26px; letter-spacing: 3px;">AUSTRAL COLLECTOR</span>
+        </a>
+        <div style="display: flex; gap: 30px; align-items: center;">
+            <a href="/" style="color: var(--text-light); text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1.5px; font-weight: 600;">Inicio</a>
+            <a href="#contacto" style="color: var(--text-light); text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1.5px; font-weight: 600;">Contacto</a>
+            <a href="login.html" style="background: linear-gradient(135deg, #852b10 0%, #5c1b0a 100%); color: #ffffff; padding: 10px 28px; border: 1px solid var(--bronce-gold); border-radius: 3px; box-shadow: 0 4px 15px rgba(0,0,0,0.6); text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1.5px; font-weight: 600;">Login</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-size: 2.8rem; margin-bottom: 10px;">EL BAZAR DE LEYENDAS</h1>
+            <p style="color: #a0a0a0; max-width: 600px; margin: 0 auto; line-height: 1.6;">Explora los tesoros descubiertos por los Maestres del gremio. Obras invaluables de coleccionismo forjadas en el tiempo.</p>
+        </div>
+        
+        <h2 style="text-align: center; color: var(--bronce-gold); font-size: 1.6rem; margin-top: 60px;">Bienvenido al Santuario de Colecciones</h2>
+        <p style="text-align: center; color: #a0a0a0; max-width: 600px; margin: 20px auto;">Tu plataforma para compartir, comprar y vender reliquias vintage de todo tipo.</p>
+    </div>
+
+    <footer style="background-color: #0f0906; border-top: 1px solid var(--bronce-gold); padding: 40px; margin-top: 60px; text-align: center;">
+        <h3 class="brand-font" style="margin-top: 0; margin-bottom: 15px;">Contacto y Soporte</h3>
+        <p>Email: gremio@australcollector.cl <br> Teléfono: +56 9 1234 5678</p>
+    </footer>
+
+    <script>
+        console.log('Página de inicio cargada correctamente');
+    </script>
+</body>
+</html>

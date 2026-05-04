@@ -1,23 +1,36 @@
-import { Link } from 'react-router-dom';
-
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-      <h1 className="text-5xl md:text-7xl font-display font-bold text-brand-primary text-glow mb-6">
-        EL SANTUARIO DE TUS COLECCIONES
-      </h1>
-      <p className="max-w-2xl text-lg text-brand-text mb-12">
-        Descubre un espacio donde las figuras, juguetes y reliquias vintage de Chile encuentran su vitrina digital definitiva. Únete a la comunidad con estética dark fantasy y steampunk.
-      </p>
-      
-      <div className="flex gap-4">
-        <Link to="/registro" className="px-8 py-4 bg-brand-primary text-brand-secondary font-bold uppercase tracking-wider hover:bg-brand-accent transition-colors border border-brand-primary">
-          Forjar Cuenta
-        </Link>
-        <Link to="/perfil/demo" className="px-8 py-4 border border-brand-primary text-brand-primary font-bold uppercase tracking-wider hover:bg-glass transition-colors">
-          Explorar Reliquias
-        </Link>
+    <>
+      <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+      <div style={{
+        background: 'var(--bg-gradient)',
+        backgroundColor: '#1a100b',
+        backgroundAttachment: 'fixed',
+        color: '#e0e0e0',
+        fontFamily: "'Inter', sans-serif",
+        margin: 0,
+        padding: 0,
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+        <h1 style={{
+          textAlign: 'center',
+          fontSize: '2.8rem',
+          fontFamily: "'Cinzel', serif",
+          color: '#d59c3e',
+          textShadow: '0 2px 4px rgba(0,0,0,1)',
+          margin: '40px 0 10px 0',
+        }}>EL BAZAR DE LEYENDAS</h1>
+        <p style={{
+          textAlign: 'center',
+          color: '#a0a0a0',
+          maxWidth: '600px',
+          margin: '0 auto',
+          lineHeight: '1.6',
+        }}>Explora los tesoros descubiertos por los Maestres del gremio. Obras invaluables de coleccionismo forjadas en el tiempo.</p>
       </div>
-    </div>
-  );
+    </>
+  )
 }
